@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ED462": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\Templates\\_ED462-{YYYY-MM-DD}-win1251.xml ."
+    },
+    "ССП": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\Templates\\_ССП_Request.xml .\\Request.xml"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ED462
+EDDate="`Дата сегодня;YYYY-MM-DD;электрон;20\d{2}-\d{2}-\d{2}'"
+EDNo="`Номер сегодня;1001;каждый раз+1;\d+'"
+EDAuthor="4030XXX000"
+EDReceiver="4012000000"
+xmlns="urn:cbr-ru:ed:v2.0">
+<Request
+BicPBR="044012000"
+OrgBIC="044030XXX"
+DocDate="`Дата документа;YYYY-MM-DD;на бумаге;20\d{2}-\d{2}-\d{2}'"
+DocNo="`Номер документа;1;на бумаге;\d+'"
+OperationDate="`Дата операции;YYYY-MM-DD;завтра;20\d{2}-\d{2}-\d{2}'"
+OperationType="`Тип операции;2;сдача-1/получение-2;[12]'"
+Sum="`Общая сумма;0;в копейках;\d+'"
+Acc="30101810600000000XXX"
+NamePBR="КЦ С-З ГУ БАНКА РОССИИ"
+NameClient="АО &quot;БАНК&quot;"/>
+<Cash Nominal="500000" Sum="`Банкнота 5000;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="200000" Sum="`Банкнота 2000;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="100000" Sum="`Банкнота 1000;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="50000" Sum="`Банкнота 500;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="20000" Sum="`Банкнота 200;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="10000" Sum="`Банкнота 100;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="5000" Sum="`Банкнота 50;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="1000" Sum="`Банкнота 10;0;в копейках;\d+'" CashType="1"/>
+<Cash Nominal="2500" Sum="`Монета 25;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="1000" Sum="`Монета 10;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="500" Sum="`Монета 5;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="200" Sum="`Монета 2;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="100" Sum="`Монета 1;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="50" Sum="`Монета 0.50;0;в копейках;\d+'" CashType="0"/>
+<Cash Nominal="10" Sum="`Монета 0.10;0;в копейках;\d+'" CashType="0"/>
+<CashInfo
+CashCode="`Код операции;71.2;сдача-36.2/получение-71.2;(36\.2|71\.2)'"
+CashSum="`Общая сумма;0;в копейках;\d+'"/>
+<CustomerData CustomerName="`Инкассатор;Петров Петр Петрович;ФИО полностью;\D+'"/>
+<Annotation>`Телефон;тел. (812) 123-45-67 доб. 8910;для связи;.+'</Annotation>
+<CreatorInfo FIO="`Председатель Правления;Иванов И.И.;Фамилия, инициалы;\D+'" Position="Председатель Правления"/>
+<CreatorInfo FIO="`Главный бухгалтер;Иванова И.И.;Фамилия, инициалы;\D+'" Position="Главный бухгалтер"/>
+</ED462>
