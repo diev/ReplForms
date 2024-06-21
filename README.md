@@ -1,5 +1,5 @@
 # ReplForms
-Replaces every `key[:value:remark:regexp]` in a template XML file with
+Replaces every `key[;value;remark;regexp]` in a template XML file with
 DataGridView inserted and validated values.
 
 Заменяет каждый `Параметр[:Значение:Примечание:RegExp]` в файле шаблона
