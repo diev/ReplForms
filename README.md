@@ -48,7 +48,8 @@ DataGridView inserted and validated values.
 utf8 (для отображения на этом сайте);
 - `_ED462-{YYYY-MM-DD}-win1251.xml` - файл в формате УФЭБС в рабочей
 кодировке windows-1251;
-- `_ССП_Request.xml` - файл запроса в КБКИ.
+- `_ССП_Request.xml` - файл запроса в КБКИ (см. транспортную программу
+<https://github.com/diev/Api5704>).
 
 ## Requirements / Требования
 
