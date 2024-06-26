@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Authors>Diev</Authors>
-    <Version>8.2024.625</Version>
+    <Version>8.2024.626</Version>
     <Description>Replaces every `key[:value:remark:regexp]' in a template XML file with DataGridView inserted and validated values.</Description>
     <Copyright>Copyright 2024 Dmitrii Evdokimov</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

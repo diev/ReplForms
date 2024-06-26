@@ -7,6 +7,9 @@
     "ССП": {
       "commandName": "Project",
       "commandLineArgs": "..\\..\\..\\..\\Templates\\_ССП_Request.xml .\\Request.xml"
+    },
+    "No args": {
+      "commandName": "Project"
     }
   }
 }

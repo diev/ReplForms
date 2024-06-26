@@ -205,16 +205,18 @@ public partial class MainForm : Form
             column = Grid.Columns[i];
             column.HeaderText = headers[i];
 
-            column.Width = width;
-            column.ReadOnly = true;
+            if (i == 1)
+            {
+                column.Width = Grid.ClientSize.Width -
+                    Grid.RowHeadersWidth - width * 3 -
+                    SystemInformation.VerticalScrollBarWidth - 2;
+            }
+            else
+            {
+                column.Width = width;
+                column.ReadOnly = true;
+            }
         }
-
-        column = Grid.Columns[1];
-        column.Width = Grid.ClientSize.Width - Grid.RowHeadersWidth - width * 3 -
-            SystemInformation.VerticalScrollBarWidth - 2;
-
-        DataGridViewRow header = Grid.Rows[0];
-        header.ReadOnly = true;
     }
 
     private void Grid_CellEndEdit(object sender, DataGridViewCellEventArgs e)

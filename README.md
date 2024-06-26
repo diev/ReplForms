@@ -1,4 +1,7 @@
 # ReplForms
+[![Build status](https://ci.appveyor.com/api/projects/status/5si5rlduax254gio?svg=true)](https://ci.appveyor.com/project/diev/replforms)
+[![GitHub Release]](https://github.com/diev/ReplForms/releases/latest)
+
 Replaces every `key[;value;remark;regexp]` in a template XML file with
 DataGridView inserted and validated values.
 

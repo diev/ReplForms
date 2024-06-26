@@ -152,55 +152,25 @@ internal class Table
         bool xml = Path.GetExtension(filename).Equals(".xml",
             StringComparison.OrdinalIgnoreCase);
 
-        foreach (Match match in Regex.Matches(template, _pattern))
+        foreach (var row in Rows)
         {
-            if (match.Success && match.Groups.Count > 0)
+            var key = row.Key;
+            var value = row.Value;
+            string pattern = _pattern1 + key + "(|" + Separator + ".*?)" + _pattern0;
+
+            if (xml)
             {
-                var key = match.Groups[1].Value;
-                var find = key.Contains(Separator)
-                    ? key.Split(Separator)[0]
-                    : key;
+                Helper.XmlEscape(ref value);
+            }
 
-                if (TryGetValueByKey(find, out string value))
-                {
-                    string pattern = _pattern1 + key + _pattern0;
-
-                    if (xml)
-                    {
-                        Helper.XmlEscape(ref value);
-                    }
-
-                    if (ReplaceAll)
-                    {
-                        //Replace all same patterns
-                        //template = template.Replace(pattern, value,
-                        //    StringComparison.Ordinal);
-
-                        //Replace all same keys
-                        string pattern2 = _pattern1 + find + "(|" + Separator + ".*)" + _pattern0;
-
-                        foreach (Match match2 in Regex.Matches(template, pattern2))
-                        {
-                            if (match2.Success && match2.Groups.Count > 0)
-                            {
-                                int pos = match2.Index;
-                                template = template
-                                    .Remove(pos, match2.Length)
-                                    .Insert(pos, value);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //Replace only first pattern
-                        int pos = match.Index;
-                        template = template
-                            .Remove(pos, match.Length)
-                            .Insert(pos, value);
-                    }
-
-                    break;
-                }
+            if (ReplaceAll)
+            {
+                template = Regex.Replace(template, pattern, value);
+            }
+            else
+            {
+                var expr = new Regex(pattern);
+                template = expr.Replace(template, value, 1);
             }
         }
 
