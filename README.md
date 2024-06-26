@@ -1,6 +1,6 @@
 # ReplForms
 [![Build status](https://ci.appveyor.com/api/projects/status/5si5rlduax254gio?svg=true)](https://ci.appveyor.com/project/diev/replforms)
-[![GitHub Release](https://img.shields.io/github/release/diev/ConvertFRBtoABS.svg)](https://github.com/diev/ReplForms/releases/latest)
+[![GitHub Release](https://img.shields.io/github/release/diev/ReplForms.svg)](https://github.com/diev/ReplForms/releases/latest)
 
 Replaces every `key[;value;remark;regexp]` in a template XML file with
 DataGridView inserted and validated values.
@@ -31,7 +31,10 @@ DataGridView inserted and validated values.
 а при выборе - подставляться. К значениям пунктов меню можно приписывать
 пояснение через ` - ` (оно не будет подставлено).
 
-Опция в меню "Заменять все" - сделает замену всех таких параметров далее.
+Опция в меню "Заменять все" (включена по умолчанию) - делает замену всех
+полей далее с таким же параметром. Если отключить, то одинаковые параметры
+будут повторяться в таблице по мере попадания в шаблонах и требовать их
+заполнения.
 
 Опциональным параметром запуска можно указать, какой файл шаблона открыть
 сразу и опционально следующим - в какой файл сохранить результат:
@@ -51,13 +54,8 @@ DataGridView inserted and validated values.
 ## Examples / Примеры
 
 В папке [Templates](Templates) есть несколько примеров.
-Для кодировки 1251 (если символы вдруг не отображаются на этом сайте
-в этой кодировке - было такое) есть параллельный в UTF-8.
 
-- `_ED462-{YYYY-MM-DD}-utf8.xml` - файл в формате УФЭБС в кодировке
-utf8 (для отображения на этом сайте);
-- `_ED462-{YYYY-MM-DD}-win1251.xml` - файл в формате УФЭБС в рабочей
-кодировке windows-1251;
+- `_ED462-{YYYY-MM-DD}-1001.xml` - файл в формате УФЭБС ED462;
 - `_ССП_Request.xml` - файл запроса в КБКИ (см. транспортную программу
 <https://github.com/diev/Api5704>).
 
@@ -69,15 +67,18 @@ utf8 (для отображения на этом сайте);
 
 Build this Project with many dlls into a Distr folder:
 
-    dotnet publish Project.csproj -o Distr
+    dotnet publish Project.csproj -o bin
 
 Build this Project as a single-file app when NET Desktop runtime required:
 
-    dotnet publish Project.csproj -o Distr -r win-x64 -p:PublishSingleFile=true --self-contained false
+    dotnet publish Project.csproj -o bin -r win-x64 -p:PublishSingleFile=true --no-self-contained
 
 Build this Project as a single-file app when no runtime required:
 
-    dotnet publish Project.csproj -o Distr -r win-x64 -p:PublishSingleFile=true
+    dotnet publish Project.csproj -o bin -r win-x64 -p:PublishSingleFile=true
+
+или используйте прилагаемый `build.cmd` (он построит и резервную копию в
+архиве при наличии 7-Zip).
 
 ## License / Лицензия
 
