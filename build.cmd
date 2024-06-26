@@ -10,7 +10,7 @@ for %%i in (%src%\*.csproj) do (
  set app=%%~ni
 )
 
-rd /s /q bin
+if exist bin rd /s /q bin
 
 rem Build an app with many dlls (default)
 rem dotnet publish %prj% -o bin

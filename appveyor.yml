@@ -1,5 +1,17 @@
 version: '{build}'
 image: Visual Studio 2022
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+  - main
+skip_tags: true
+skip_branch_with_pr: true
+max_jobs: 1
+
+configuration: Release
+
 init:
 - cmd: >-
     tzutil /s "Russian Standard Time"
@@ -42,7 +54,9 @@ deploy:
   artifact: AppZip
   force_update: true
   on:
-    branch: main
+    branch:
+      - master
+      - main
 only_commits:
   files:
     - '*.cs'
