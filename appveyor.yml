@@ -25,7 +25,7 @@ install:
 
     $env:BuildDate = $CommitDateTime.ToString('yyyy-MM-dd')
 
-    $env:AppZip = $env:APPVEYOR_PROJECT_NAME-v$env:APPVEYOR_BUILD_VERSION.zip
+    $env:AppZip = "$env:APPVEYOR_PROJECT_NAME-v$env:APPVEYOR_BUILD_VERSION.zip"
 
     Write-Host "Building v$env:APPVEYOR_BUILD_VERSION dated $env:BuildDate"
 build_script:
