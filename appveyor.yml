@@ -1,6 +1,5 @@
 version: '{build}'
 image: Visual Studio 2022
-configuration: Release
 init:
 - cmd: >-
     tzutil /s "Russian Standard Time"
@@ -29,10 +28,9 @@ install:
 
     Write-Host "Building v$env:APPVEYOR_BUILD_VERSION dated $env:BuildDate"
 build_script:
-- cmd: >-
-    build.cmd
+- cmd: build.cmd
 artifacts:
-- path: $env:AppZip
+- path: '*.zip'
   name: AppZip
 deploy:
 - provider: GitHub
@@ -42,8 +40,6 @@ deploy:
   auth_token:
     secure: Oyf/ccEamPwfWLPEZQlf9hPfhGGXu3Kqnmt9saeaTMH2OE6OR0tAt2JkDl/FRR9o
   artifact: AppZip
-  draft: false
-  prerelease: true
   force_update: true
   on:
     branch: main
