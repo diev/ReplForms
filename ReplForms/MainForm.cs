@@ -48,9 +48,9 @@ public partial class MainForm : Form
         {
             // Options
 
-            if (arg.Equals("-all", StringComparison.OrdinalIgnoreCase))
+            if (arg.Equals("-1", StringComparison.Ordinal))
             {
-                OptionsReplaceAllMenuItem.Checked = true;
+                OptionsReplaceAllMenuItem.Checked = false;
                 continue;
             }
 
@@ -119,11 +119,6 @@ public partial class MainForm : Form
     {
         Grid.CancelEdit();
         Close();
-    }
-
-    private void HelpMenuItem_Click(object sender, EventArgs e)
-    {
-        Helper.Usage();
     }
 
     private void ShowOpenFileDialog()
@@ -200,22 +195,26 @@ public partial class MainForm : Form
     {
         string[] headers = ["Параметр", "Значение", "Примечание", "Проверка"];
 
+        var column = Grid.Columns[0];
+        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+        int width = column.Width;
+        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
         for (int i = 0; i < Grid.Columns.Count; i++)
         {
-            DataGridViewColumn column = Grid.Columns[i];
+            column = Grid.Columns[i];
             column.HeaderText = headers[i];
 
-            if (i == 1)
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                column.ReadOnly = false;
-            }
-            else
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                column.ReadOnly = true;
-            }
+            column.Width = width;
+            column.ReadOnly = true;
         }
+
+        column = Grid.Columns[1];
+        column.Width = Grid.ClientSize.Width - Grid.RowHeadersWidth - width * 3 -
+            SystemInformation.VerticalScrollBarWidth - 2;
+
+        DataGridViewRow header = Grid.Rows[0];
+        header.ReadOnly = true;
     }
 
     private void Grid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -243,5 +242,55 @@ public partial class MainForm : Form
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         _closing = true;
+    }
+
+    private void Grid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+    {
+        var row = Grid.Rows[e.RowIndex];
+        var cell = row.Cells[2].Value.ToString() ?? string.Empty;
+
+        if (cell.Contains('|'))
+        {
+            RowContextMenu.Items.Clear();
+            RowContextMenu.Tag = row.Cells[1];
+            var values = cell.Split('|');
+
+            foreach (var value in values)
+            {
+                RowContextMenu.Items.Add(value);
+            }
+
+            e.ContextMenuStrip = RowContextMenu;
+        }
+    }
+
+    private void RowContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    {
+        string separator = " - ";
+        var value = e.ClickedItem?.Text;
+
+        if (value == null) return;
+
+        if (value.Contains(separator, StringComparison.Ordinal))
+        {
+            value = value[..value.IndexOf(separator)];
+        }
+
+        (RowContextMenu.Tag as DataGridViewCell)!.Value = value;
+    }
+
+    private void TemplatesHelpItem_Click(object sender, EventArgs e)
+    {
+        Helper.TemplatesHelp();
+    }
+
+    private void UsageHelpItem_Click(object sender, EventArgs e)
+    {
+        Helper.UsageHelp();
+    }
+
+    private void AboutItem_Click(object sender, EventArgs e)
+    {
+        Helper.About();
     }
 }

@@ -28,6 +28,7 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         MenuStrip = new MenuStrip();
         FileMenu = new ToolStripMenuItem();
         FileOpenMenuItem = new ToolStripMenuItem();
@@ -36,13 +37,18 @@ partial class MainForm
         FileExitMenuItem = new ToolStripMenuItem();
         OptionsMenu = new ToolStripMenuItem();
         OptionsReplaceAllMenuItem = new ToolStripMenuItem();
-        HelpMenuItem = new ToolStripMenuItem();
+        HelpMenu = new ToolStripMenuItem();
+        TemplatesHelpItem = new ToolStripMenuItem();
+        ArgsHelpItem = new ToolStripMenuItem();
+        toolStripMenuItem1 = new ToolStripSeparator();
+        AboutItem = new ToolStripMenuItem();
         StatusStrip = new StatusStrip();
         StatusLabel = new ToolStripStatusLabel();
         StatusLabel2 = new ToolStripStatusLabel();
         Grid = new DataGridView();
         OpenFileDialog = new OpenFileDialog();
         SaveFileDialog = new SaveFileDialog();
+        RowContextMenu = new ContextMenuStrip(components);
         MenuStrip.SuspendLayout();
         StatusStrip.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)Grid).BeginInit();
@@ -50,7 +56,7 @@ partial class MainForm
         // 
         // MenuStrip
         // 
-        MenuStrip.Items.AddRange(new ToolStripItem[] { FileMenu, OptionsMenu, HelpMenuItem });
+        MenuStrip.Items.AddRange(new ToolStripItem[] { FileMenu, OptionsMenu, HelpMenu });
         MenuStrip.Location = new Point(0, 0);
         MenuStrip.Name = "MenuStrip";
         MenuStrip.Size = new Size(800, 24);
@@ -67,26 +73,28 @@ partial class MainForm
         // FileOpenMenuItem
         // 
         FileOpenMenuItem.Name = "FileOpenMenuItem";
-        FileOpenMenuItem.Size = new Size(178, 22);
+        FileOpenMenuItem.ShortcutKeys = Keys.F3;
+        FileOpenMenuItem.Size = new Size(197, 22);
         FileOpenMenuItem.Text = "Открыть шаблон...";
         FileOpenMenuItem.Click += FileOpenMenuItem_Click;
         // 
         // FileSaveMenuItem
         // 
         FileSaveMenuItem.Name = "FileSaveMenuItem";
-        FileSaveMenuItem.Size = new Size(178, 22);
+        FileSaveMenuItem.ShortcutKeys = Keys.F4;
+        FileSaveMenuItem.Size = new Size(197, 22);
         FileSaveMenuItem.Text = "Сохранить как...";
         FileSaveMenuItem.Click += FileSaveMenuItem_Click;
         // 
         // FileMenuSeparator
         // 
         FileMenuSeparator.Name = "FileMenuSeparator";
-        FileMenuSeparator.Size = new Size(175, 6);
+        FileMenuSeparator.Size = new Size(194, 6);
         // 
         // FileExitMenuItem
         // 
         FileExitMenuItem.Name = "FileExitMenuItem";
-        FileExitMenuItem.Size = new Size(178, 22);
+        FileExitMenuItem.Size = new Size(197, 22);
         FileExitMenuItem.Text = "Выход";
         FileExitMenuItem.Click += FileExitMenuItem_Click;
         // 
@@ -99,17 +107,45 @@ partial class MainForm
         // 
         // OptionsReplaceAllMenuItem
         // 
+        OptionsReplaceAllMenuItem.Checked = true;
         OptionsReplaceAllMenuItem.CheckOnClick = true;
+        OptionsReplaceAllMenuItem.CheckState = CheckState.Checked;
         OptionsReplaceAllMenuItem.Name = "OptionsReplaceAllMenuItem";
-        OptionsReplaceAllMenuItem.Size = new Size(150, 22);
+        OptionsReplaceAllMenuItem.Size = new Size(180, 22);
         OptionsReplaceAllMenuItem.Text = "Заменять все ";
         // 
-        // HelpMenuItem
+        // HelpMenu
         // 
-        HelpMenuItem.Name = "HelpMenuItem";
-        HelpMenuItem.Size = new Size(77, 20);
-        HelpMenuItem.Text = "Помощь...";
-        HelpMenuItem.Click += HelpMenuItem_Click;
+        HelpMenu.DropDownItems.AddRange(new ToolStripItem[] { TemplatesHelpItem, ArgsHelpItem, toolStripMenuItem1, AboutItem });
+        HelpMenu.Name = "HelpMenu";
+        HelpMenu.Size = new Size(68, 20);
+        HelpMenu.Text = "Помощь";
+        // 
+        // TemplatesHelpItem
+        // 
+        TemplatesHelpItem.Name = "TemplatesHelpItem";
+        TemplatesHelpItem.Size = new Size(192, 22);
+        TemplatesHelpItem.Text = "О Шаблонах...";
+        TemplatesHelpItem.Click += TemplatesHelpItem_Click;
+        // 
+        // ArgsHelpItem
+        // 
+        ArgsHelpItem.Name = "ArgsHelpItem";
+        ArgsHelpItem.Size = new Size(192, 22);
+        ArgsHelpItem.Text = "Параметры запуска...";
+        ArgsHelpItem.Click += UsageHelpItem_Click;
+        // 
+        // toolStripMenuItem1
+        // 
+        toolStripMenuItem1.Name = "toolStripMenuItem1";
+        toolStripMenuItem1.Size = new Size(189, 6);
+        // 
+        // AboutItem
+        // 
+        AboutItem.Name = "AboutItem";
+        AboutItem.Size = new Size(192, 22);
+        AboutItem.Text = "О программе...";
+        AboutItem.Click += AboutItem_Click;
         // 
         // StatusStrip
         // 
@@ -150,6 +186,7 @@ partial class MainForm
         Grid.TabIndex = 2;
         Grid.CellEndEdit += Grid_CellEndEdit;
         Grid.CellValidating += Grid_CellValidating;
+        Grid.RowContextMenuStripNeeded += Grid_RowContextMenuStripNeeded;
         // 
         // OpenFileDialog
         // 
@@ -167,6 +204,12 @@ partial class MainForm
         SaveFileDialog.InitialDirectory = ".";
         SaveFileDialog.ShowPinnedPlaces = false;
         SaveFileDialog.Title = "Сохранить файл";
+        // 
+        // RowContextMenu
+        // 
+        RowContextMenu.Name = "RowContextMenu";
+        RowContextMenu.Size = new Size(61, 4);
+        RowContextMenu.ItemClicked += RowContextMenu_ItemClicked;
         // 
         // MainForm
         // 
@@ -203,8 +246,13 @@ partial class MainForm
     private OpenFileDialog OpenFileDialog;
     private SaveFileDialog SaveFileDialog;
     private ToolStripStatusLabel StatusLabel;
-    private ToolStripMenuItem HelpMenuItem;
     private ToolStripMenuItem OptionsMenu;
     private ToolStripMenuItem OptionsReplaceAllMenuItem;
     private ToolStripStatusLabel StatusLabel2;
+    private ContextMenuStrip RowContextMenu;
+    private ToolStripMenuItem HelpMenu;
+    private ToolStripMenuItem TemplatesHelpItem;
+    private ToolStripSeparator toolStripMenuItem1;
+    private ToolStripMenuItem AboutItem;
+    private ToolStripMenuItem ArgsHelpItem;
 }

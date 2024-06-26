@@ -163,6 +163,8 @@ internal class Table
 
                 if (TryGetValueByKey(find, out string value))
                 {
+                    string pattern = _pattern1 + key + _pattern0;
+
                     if (xml)
                     {
                         Helper.XmlEscape(ref value);
@@ -170,15 +172,31 @@ internal class Table
 
                     if (ReplaceAll)
                     {
-                        //Replace all
-                        template = template.Replace(_pattern1 + key + _pattern0, value,
-                            StringComparison.Ordinal);
+                        //Replace all same patterns
+                        //template = template.Replace(pattern, value,
+                        //    StringComparison.Ordinal);
+
+                        //Replace all same keys
+                        string pattern2 = _pattern1 + find + "(|" + Separator + ".*)" + _pattern0;
+
+                        foreach (Match match2 in Regex.Matches(template, pattern2))
+                        {
+                            if (match2.Success && match2.Groups.Count > 0)
+                            {
+                                int pos = match2.Index;
+                                template = template
+                                    .Remove(pos, match2.Length)
+                                    .Insert(pos, value);
+                            }
+                        }
                     }
                     else
                     {
-                        //Replace only first
-                        var r = new Regex(_pattern1 + key + _pattern0);
-                        template = r.Replace(template, value, 1);
+                        //Replace only first pattern
+                        int pos = match.Index;
+                        template = template
+                            .Remove(pos, match.Length)
+                            .Insert(pos, value);
                     }
 
                     break;

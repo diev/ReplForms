@@ -17,11 +17,22 @@ limitations under the License.
 */
 #endregion
 
+using Diev.Extensions.Info;
+
 namespace ReplForms;
 
 internal class Helper
 {
-    public static void Usage()
+    public static void About()
+    {
+        MessageBox.Show(@$"{App.Name}
+v{App.Version?.ToString(3)}
+
+{App.Description}",
+"О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    public static void TemplatesHelp()
     {
         MessageBox.Show(@"Шаблон - это XML (или другой) файл,
 где есть такие варианты специальных полей шаблона:
@@ -31,21 +42,31 @@ internal class Helper
 `Параметр;Значение;Примечание'
 `Параметр;Значение;Примечание;RegExp'
 
-Поле ""Значение по умолчанию"" может делать автозамену:
+Поле ""Значение (по умолчанию)"" может делать автозамену:
 GUID
 YYYY-MM-DD
 
-Опция ""Заменять все"" - сделает одинаковую замену.
+Поле ""Примечание"" может показывать контекстное меню для выбора, если оно содержит '|':
+""x|y|z"" или ""|x - пункт1|y - пункт2|z - пункт3"" и т.п.
 
-Параметры запуска: Шаблон Результат
+Опция ""Заменять все"" - сделает замену всех одинаковых параметров далее.",
+
+"О шаблонах", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    public static void UsageHelp()
+    {
+        MessageBox.Show(@"Опциональные параметры запуска:
+[Шаблон [Результат]]
+
 В имени файла можно делать автозамену:
 {GUID}
 {YYYY-MM-DD}
 
--all - опция ""Заменять все"",
+-1 - отключить опцию ""Заменять все"",
 -1251 - кодировка windows-1251 в текстовых шаблонах.",
 
-"Помощь", MessageBoxButtons.OK, MessageBoxIcon.Information);
+"Параметры запуска", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     public static void XmlUnescape(ref string value)
