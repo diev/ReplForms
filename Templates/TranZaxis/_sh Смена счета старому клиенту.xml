@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<tran:Rtp xmlns="http://schemas.tranzaxis.com/contracts-admin.xsd" xmlns:com="http://schemas.tranzaxis.com/common-types.xsd" xmlns:sub="http://schemas.tranzaxis.com/subjects-admin.xsd" xmlns:tran="http://schemas.tranzaxis.com/tran.xsd" xmlns:tran1="http://schemas.tranzaxis.com/tran-common.xsd">
+  <tran:Tran>
+    <tran:Request ProcessorInstName="CIB-Local" Kind="Udt" LifePhase="Single" UdtType="ModifyContract">
+      <tran:Specific>
+        <tran:Admin ObjectMustExist="false">
+          <tran:Contract Rid="`Новый счет;40817810100000000002;счет;\d{20}'" ExtRid="`Старый счет;40817810100000000001;счет;\d{20}'">
+            <TypeRid>`Тип счета;1;1 - резидент (40817)|2 - нерезидент (40820)|3 - корпорат (407,406,603);[123]'`Валюта счета;810;810 - рубли|840 - доллары|978 - евро;(810|840|978)'</TypeRid>
+            <ClientRid>CIB`Идентификатор клиента;;ИД субъекта;\d{5}'</ClientRid>
+            <BranchName>0800</BranchName>
+          </tran:Contract>
+        </tran:Admin>
+      </tran:Specific>
+    </tran:Request>
+  </tran:Tran>
+</tran:Rtp>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<tran:Rtp xmlns="http://schemas.tranzaxis.com/contracts-admin.xsd" xmlns:con="http://schemas.tranzaxis.com/contracts-notify-admin.xsd" xmlns:con1="http://schemas.tranzaxis.com/contracts-notify.xsd" xmlns:tran="http://schemas.tranzaxis.com/tran.xsd">
+  <tran:Tran>
+    <tran:Request ProcessorInstName="CIB-Local" Kind="ModifyContract" LifePhase="Single">
+      <tran:Specific>
+        <tran:Admin ObjectMustExist="true">
+          <tran:Contract Rid="CIB`Идентификатор клиента;;ИД субъекта;\d{5}'">
+            <Ext>
+              <con:NotifyContractExt>
+                <con1:NotifySubscription NotifyTypeRid="TranSms" Rid="TranSms_CIBCD`Идентификатор карты;;ИД карты;\d{4}'_`SMS;7;номер телефона;7\d{10}'" ToDelete="true" AllMyContracts="false">
+                  <con1:SmsPhones>`SMS'</con1:SmsPhones>
+                  <con1:ToSms>true</con1:ToSms>
+                  <con1:LinkedContractRid>CIBCD`Идентификатор карты'</con1:LinkedContractRid>
+                </con1:NotifySubscription>
+              </con:NotifyContractExt>
+            </Ext>
+          </tran:Contract>
+        </tran:Admin>
+      </tran:Specific>
+    </tran:Request>
+  </tran:Tran>
+</tran:Rtp>

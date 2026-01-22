@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<tran:Rtp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com="http://schemas.tranzaxis.com/common-types.xsd" xmlns:sub="http://schemas.tranzaxis.com/subjects-admin.xsd" xmlns:tran="http://schemas.tranzaxis.com/tran.xsd" xmlns:tran1="http://schemas.tranzaxis.com/tran-common.xsd">
+  <tran:Tran>
+    <tran:Request ProcessorInstName="CIB-Local" Kind="ModifySubject" LifePhase="Single">
+      <tran:Specific>
+        <tran:Admin ObjectMustExist="`Старый клиент;true/false;true - изменение|false - создание;(true|false)'">
+          <tran:Subject>
+            <sub:Corporation TypeRid="CorpCustomerCIB">
+              <sub:Rid>CIB`Идентификатор клиента;;ИД субъекта;\d{5}'</sub:Rid>
+              <sub:SubjectDocuments>
+                <sub:Document TypeRid="INN" Rid="`ИНН;;10 цифр;\d{10}'"/>
+              </sub:SubjectDocuments>
+              <sub:Title>`Наименование краткое;обязательно'</sub:Title>
+              <sub:LegalTitle>`Наименование полное;обязательно'</sub:LegalTitle>
+              <sub:LatTitle/>
+              <sub:ShortTitle>`Наименование сокращенное'</sub:ShortTitle>
+              <sub:Address Building="`Факт.Корпус'" House="`Факт.Дом'" StreetTitle="`Факт.Улица'" CityTitle="`Факт.Город;Санкт-Петербург;'" CountryId="`Факт.Страна;643;643 - Россия;\d{3}'"/>
+              <sub:LegalAddress Building="`Юр.Корпус'" House="`Юр.Дом'" StreetTitle="`Юр.Улица'" CityTitle="`Юр.Город;Санкт-Петербург;'" CountryId="`Юр.Страна;643;643 - Россия;\d{3}'"/>
+            </sub:Corporation>
+          </tran:Subject>
+        </tran:Admin>
+      </tran:Specific>
+    </tran:Request>
+  </tran:Tran>
+</tran:Rtp>

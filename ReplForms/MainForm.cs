@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2024 Dmitrii Evdokimov
+Copyright 2024-2025 Dmitrii Evdokimov
 Open source software
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,10 +25,9 @@ namespace ReplForms;
 public partial class MainForm : Form
 {
     private bool _closing = false;
-
-    public string? TemplateFileName { get; set; }
-    public string? ResultPath { get; set; }
-    public string? ResultFileName { get; set; }
+    private string? TemplateFileName { get; set; }
+    private string? ResultPath { get; set; }
+    private string? ResultFileName { get; set; }
     private Table Table { get; set; } = new();
 
     public MainForm()
@@ -249,7 +248,7 @@ public partial class MainForm : Form
     private void Grid_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
     {
         var row = Grid.Rows[e.RowIndex];
-        var cell = row.Cells[2].Value.ToString() ?? string.Empty;
+        var cell = row.Cells[2].Value?.ToString() ?? string.Empty;
 
         if (cell.Contains('|'))
         {

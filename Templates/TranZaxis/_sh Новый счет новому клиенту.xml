@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<tran:Rtp xmlns="http://schemas.tranzaxis.com/contracts-admin.xsd" xmlns:com="http://schemas.tranzaxis.com/common-types.xsd" xmlns:sub="http://schemas.tranzaxis.com/subjects-admin.xsd" xmlns:tran="http://schemas.tranzaxis.com/tran.xsd" xmlns:tran1="http://schemas.tranzaxis.com/tran-common.xsd">
+  <tran:Tran>
+    <tran:Request ProcessorInstName="CIB-Local" Kind="Group" LifePhase="Single">
+      <tran:Specific>
+        <tran:Group>
+          <tran:Tran>
+            <tran:Request ProcessorInstName="CIB-Local" Kind="ModifySubject" LifePhase="Single">
+              <tran:Specific>
+                <tran:Admin>
+                  <tran:Subject>
+                    <sub:Person TypeRid="CardholderCIB">
+                      <sub:Rid>CIB`Идентификатор клиента;;ИД субъекта;\d{5}'</sub:Rid>
+                      <sub:UserAttrs>
+                        <com:ParamValue Rid="TabNom">
+                          <com:Val/>
+                        </com:ParamValue>
+                        <com:ParamValue Rid="Job">
+                          <com:Val/>
+                        </com:ParamValue>
+                        <com:ParamValue Rid="StartJob">
+                          <com:Val/>
+                        </com:ParamValue>
+                        <com:ParamValue Rid="StartBank">
+                          <com:Val/>
+                        </com:ParamValue>
+                        <com:ParamValue Rid="JobLat">
+                          <com:Val/>
+                        </com:ParamValue>
+                        <com:ParamValue Rid="PB">
+                          <com:Val>1</com:Val>
+                        </com:ParamValue>
+                      </sub:UserAttrs>
+                      <sub:SubjectDocuments>
+                        <sub:Document TypeRid="INN" Rid="`ИНН;;одни цифры;(\d{10}|\d{12})'"/>
+                        <sub:Document TypeRid="PASSPORT" Rid="`Номер паспорта;;6 цифр;\d{6}'">
+                          <sub:Series>`Серия паспорта;;4 цифры;\d{4}'</sub:Series>
+                          <sub:Issuer>`Кем выдан;;;.+'</sub:Issuer>
+                          <sub:IssueDate>`Когда выдан;;YYYY-MM-DD;(19|20)\d{2}-[01]\d-[0123]\d'T00:00:00</sub:IssueDate>
+                        </sub:Document>
+                      </sub:SubjectDocuments>
+                      <sub:LastName>`Фамилия;;обязательно;\D+'</sub:LastName>
+                      <sub:FirstName>`Имя;;обязательно;\D+'</sub:FirstName>
+                      <sub:MiddleName>`Отчество;;если есть'</sub:MiddleName>
+                      <sub:Gender>`Пол;M/F;M - муж|F - жен;[MF]'</sub:Gender>
+                      <sub:BirthDate>`Дата рождения;;YYYY-MM-DD;(19|20)\d{2}-[01]\d-[0123]\d'T00:00:00</sub:BirthDate>
+                      <sub:ResidenceCountryId>`Гражданство;643;643 - Россия;\d{3}'</sub:ResidenceCountryId>
+                      <sub:RegAddress Flat="`Рег.Квартира'" Building="`Рег.Корпус'" House="`Рег.Дом'" StreetTitle="`Рег.Улица'" CityTitle="`Рег.Город;Санкт-Петербург;'" CountryId="`Рег.Страна;643;643 - Россия;\d{3}'" Zip="`Рег.Индекс;190000;;\d{6}'"/>
+                      <sub:HomeAddress Flat="`Прж.Квартира'" Building="`Прж.Корпус'" House="`Прж.Дом'" StreetTitle="`Прж.Улица'" CityTitle="`Прж.Город;Санкт-Петербург;'" CountryId="`Прж.Страна;643;643 - Россия;\d{3}'" Zip="`Прж.Индекс;190000;;\d{6}'"/>
+                      <sub:HomeAddress2/>
+                      <sub:MobilePhones>
+                        <sub:MobilePhone>`Мобильный телефон;;одни цифры;\d*'</sub:MobilePhone>
+                      </sub:MobilePhones>
+                      <sub:WorkPhones>
+                        <sub:WorkPhone>`Рабочий телефон;;одни цифры;\d*'</sub:WorkPhone>
+                      </sub:WorkPhones>
+                    </sub:Person>
+                  </tran:Subject>
+                </tran:Admin>
+              </tran:Specific>
+            </tran:Request>
+          </tran:Tran>
+          <tran:Tran>
+            <tran:Request ProcessorInstName="CIB-Local" Kind="ModifyContract" LifePhase="Single">
+              <tran:Specific>
+                <tran:Admin ObjectMustExist="false">
+                  <tran:Contract Rid="`Новый счет;40817810100000000001;счет;\d{20}'">
+                    <TypeRid>`Тип счета;1;1 - резидент (40817)|2 - нерезидент (40820)|3 - корпорат (407,406,603);[123]'`Валюта счета;810;810 - рубли|840 - доллары|978 - евро;(810|840|978)'</TypeRid>
+                    <ClientRid>CIB`Идентификатор клиента;;ИД субъекта;\d{5}'</ClientRid>
+                    <BranchName>0800</BranchName>
+                  </tran:Contract>
+                </tran:Admin>
+              </tran:Specific>
+            </tran:Request>
+          </tran:Tran>
+        </tran:Group>
+      </tran:Specific>
+    </tran:Request>
+  </tran:Tran>
+</tran:Rtp>

@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFrameworks>net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
+    <UseWindowsForms>True</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Authors>Diev</Authors>
-    <Version>8.2024.626</Version>
+    <Version>10.2026.122</Version>
     <Description>Replaces every `key[:value:remark:regexp]' in a template XML file with DataGridView inserted and validated values.</Description>
-    <Copyright>Copyright 2024 Dmitrii Evdokimov</Copyright>
+    <Copyright>Copyright 2024-2026 Dmitrii Evdokimov</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Company>diev</Company>
-    <Title>PeplForms</Title>
+    <Title>ReplForms</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

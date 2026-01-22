@@ -1,5 +1,6 @@
 # ReplForms
 [![Build status](https://ci.appveyor.com/api/projects/status/5si5rlduax254gio?svg=true)](https://ci.appveyor.com/project/diev/replforms)
+[![.NET8 Desktop](https://github.com/diev/ReplForms/actions/workflows/dotnet8-desktop.yml/badge.svg)](https://github.com/diev/ReplForms/actions/workflows/dotnet8-desktop.yml)
 [![GitHub Release](https://img.shields.io/github/release/diev/ReplForms.svg)](https://github.com/diev/ReplForms/releases/latest)
 
 Replaces every `key[;value;remark;regexp]` in a template XML file with
@@ -56,14 +57,34 @@ DataGridView inserted and validated values.
 В папке [Templates](Templates) есть несколько примеров.
 
 - `_ED462-{YYYY-MM-DD}-1001.xml` - файл в формате УФЭБС ED462;
-- `_ССП_Request.xml` - файл запроса в КБКИ (см. транспортную программу
-<https://github.com/diev/Api5704>).
+- `_ССП_Request_v2.xml` - файл запроса в КБКИ (см. транспортную программу
+<https://github.com/diev/Api5704>);
+- TranZaxis
+  - _kl Физлицо.xml
+  - _kl Юрлицо.xml
+  - _nr Новая карта новому клиенту.xml
+  - _nr Новая карта старому клиенту.xml
+  - _sh Новые 3 счета новому клиенту.xml
+  - _sh Новые 3 счета старому клиенту.xml
+  - _sh Новый счет новому клиенту.xml
+  - _sh Новый счет старому клиенту.xml
+  - _sh Смена счета старому клиенту.xml
+  - _sms Изменение E-mail.xml
+  - _sms Изменение SMS.xml
+  - _sms Отключение E-mail.xml
+  - _sms Отключение SMS.xml
+  - _sms Подключение E-mail.xml
+  - _sms Подключение SMS.xml
 
 ## Requirements / Требования
 
 - .NET 8 Desktop Runtime
+- .NET 9 Desktop Runtime
+- .NET 10 Desktop Runtime
 
 ## Build / Построение
+
+Предварительно требуется установить .NET SDK соответствующей версии.
 
 Build this Project with many dlls into a Distr folder:
 
@@ -85,3 +106,5 @@ Build this Project as a single-file app when no runtime required:
 Licensed under the [Apache License, Version 2.0].
 
 [Apache License, Version 2.0]: LICENSE
+
+[![Telegram](https://img.shields.io/badge/t.me-dievdo-blue?logo=telegram)](https://t.me/dievdo)
